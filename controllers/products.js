@@ -1,3 +1,4 @@
+const { Product } = require("../db/models/products")
 
 const productsList = [
     { id: 0, name: "Manzana", price: 120, stock: 160, unit: "kg/s" },
@@ -11,10 +12,28 @@ const productsList = [
     { id: 8, name: "Espinaca", price: 500, stock: 160, unit: "kg/s" },
 ];
 
-const list = (req, res)=> {
-    res.json(productsList)
+const list = async (req, res)=> {
+    try {
+        const productsList= await Product.find()
+        res.json(productsList)
+    } catch (error) {
+        console.log("error", error)
+        res.status(500).send("tremendo error")
+    }
+}
+
+const create = async (req, res)=>{
+    try {
+        const product = await Product.create(req.body)
+        res.json(product)
+    } catch (err) {
+        console.log("error", error)
+        res.status(500).send("no guardo")
+    }
 }
 
 module.exports = {
-    list
+    list,
+    create
+
 }
