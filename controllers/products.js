@@ -28,12 +28,29 @@ const create = async (req, res)=>{
         res.json(product)
     } catch (err) {
         console.log("error", error)
-        res.status(500).send("no guardo")
+        res.status(500).send("no creado")
+    }
+}
+
+const edit = async (req, res)=>{
+    try {
+        
+    } catch (error) {
+        res.status(500).send("no editado")
+    }
+}
+
+const del = async (req, res) => {
+    try {
+        const product = await Product.findById(req.body)
+    } catch (error) {
+        res.status(500).send("no editado")
     }
 }
 
 module.exports = {
     list,
-    create
-
+    create, 
+    edit,
+    del
 }

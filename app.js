@@ -1,5 +1,6 @@
 const express = require('express')
 const products = require("./routers/products")
+const orders =require("./routers/orders")
 const cors = require("cors")
 const bodyParser = require("body-parser")
 const { connectDb } = require("./db/connection")
@@ -17,6 +18,7 @@ app.get('/', (req, res)=> {
 })
 
 app.use("/products", products)
+app.use("/orders", orders)
 
 app.listen(port, ()=>{
     console.log(`Example app Listening at port ${port}`)
