@@ -9,16 +9,25 @@ const ordersSchema = new mongoose.Schema(
                     ref: "Product",
                     required: true,
                 },
-                qtyOrder: { type: Number, required: true },
+                qtyOrder: {
+                    type: mongoose.Schema.Types.Number,
+                    required: true,
+                },
             },
         ],
         client: {
-            name: String,
-            phone: Number,
-            address: String,
-            obs: String,
+            name: mongoose.Schema.Types.String,
+            phone: mongoose.Schema.Types.Number,
+            address: mongoose.Schema.Types.String,
+            obs: mongoose.Schema.Types.String,
         },
-        total: Number,
+        total: {
+            type: mongoose.Schema.Types.Number,
+            required: true,
+        },
+        deliveredAt: {
+            type: mongoose.Schema.Types.Date,
+        },
     },
     { timestamps: true }
 );

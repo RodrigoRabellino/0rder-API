@@ -1,9 +1,9 @@
-const { Product } = require("../db/models/products");
+const { User } = require("../db/models/users");
 
 const list = async (req, res) => {
     try {
-        const productsList = await Product.find();
-        res.json(productsList);
+        const users = await User.find();
+        res.json(users);
     } catch (error) {
         console.log("error", error);
         res.status(500).send("tremendo error");
@@ -12,8 +12,8 @@ const list = async (req, res) => {
 
 const create = async (req, res) => {
     try {
-        const product = await Product.create(req.body);
-        res.json(product);
+        const user = await User.create(req.body);
+        res.json(user);
     } catch (err) {
         console.log("error", error);
         res.status(500).send("no creado");
@@ -29,7 +29,7 @@ const edit = async (req, res) => {
 
 const del = async (req, res) => {
     try {
-        const product = await Product.findById(req.body);
+        const user = await User.findOneAndDelete(req.body);
     } catch (error) {
         res.status(500).send("no editado");
     }
