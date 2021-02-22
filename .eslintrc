@@ -1,0 +1,7 @@
+{
+    "rules": {
+        "no-unused-vars": "error",
+        "indent": ["error", 4, { "SwitchCase": 1 }],
+        "space-before-function-paren":"error"
+    }
+}
