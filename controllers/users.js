@@ -1,4 +1,5 @@
 const { User } = require("../db/models/users");
+const passwordHash = require("password-hash");
 
 const list = async (req, res) => {
     try {
@@ -12,9 +13,16 @@ const list = async (req, res) => {
 
 const create = async (req, res) => {
     try {
-        const user = await User.create(req.body);
+        const hashedPassword = passwordHash.generate(req.body.password);
+        const body = {
+            ...req.body,
+            password: hashedPassword,
+            role: "admin",
+        };
+        const user = await User.create(body);
+        user.password = null;
         res.json(user);
-    } catch (err) {
+    } catch (error) {
         console.log("error", error);
         res.status(500).send("no creado");
     }
