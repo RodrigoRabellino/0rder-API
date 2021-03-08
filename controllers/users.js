@@ -11,6 +11,22 @@ const list = async (req, res) => {
     }
 };
 
+const get = async (req, res) => {
+    const [password, email] = req.body;
+    console.log("password", password);
+    try {
+        const user = await User.find({ email: email }).exec();
+        {
+            passwordHash.verify(password, user.password)
+                ? res.json(user)
+                : res.status("error password");
+        }
+    } catch (error) {
+        console.log("error", error);
+        res.status(500).send("tremendo error");
+    }
+};
+
 const create = async (req, res) => {
     try {
         const hashedPassword = passwordHash.generate(req.body.password);
@@ -48,4 +64,5 @@ module.exports = {
     create,
     edit,
     del,
+    get,
 };

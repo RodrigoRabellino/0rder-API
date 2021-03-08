@@ -5,7 +5,6 @@ const usersSchema = new mongoose.Schema(
         email: {
             type: mongoose.Schema.Types.String,
             required: true,
-            unique: true,
         },
         firstName: {
             type: mongoose.Schema.Types.String,
@@ -28,7 +27,9 @@ const usersSchema = new mongoose.Schema(
             required: true,
         },
     },
-    { timestamps: true }
+    {
+        timestamps: true,
+    }
 );
 
 const User = mongoose.model("User", usersSchema);
